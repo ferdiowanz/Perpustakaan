@@ -1,0 +1,199 @@
+/* 🌐 General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f7f9fb;
+  color: #333;
+  line-height: 1.6;
+  padding-bottom: 60px;
+}
+
+/* 🧭 Navbar */
+header.navbar, header {
+  background-color: #2c3e50;
+  color: rgb(15, 10, 112);
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header a {
+  color: #137fe3;
+  text-decoration: none;
+  margin-left: 10px;
+}
+
+header a:hover {
+  text-decoration: underline;
+}
+
+/* 📦 Container */
+.container {
+  max-width: 1000px;
+  margin: 25px auto;
+  padding: 15px;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 📋 Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #3498db;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* 🔘 Buttons */
+button, .btn, .btn-primary, .btn-danger, .btn-secondary {
+  display: inline-block;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #3498db;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #2980b9;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c0392b;
+}
+
+.btn-secondary {
+  background-color: #95a5a6;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #7f8c8d;
+}
+
+.btn-back {
+  display: inline-block;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: #3498db;
+}
+
+.btn-back:hover {
+  text-decoration: underline;
+}
+
+/* 📑 Form */
+form {
+  margin-top: 15px;
+}
+
+form label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+form input, form select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* 🧾 Status Badges */
+.status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: white;
+  font-size: 13px;
+}
+
+.status-pinjam {
+  background-color: #f39c12;
+}
+
+.status-late {
+  background-color: #e74c3c;
+}
+
+.status-return {
+  background-color: #2ecc71;
+}
+
+/* 📄 Pagination */
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination a, .pagination span {
+  margin: 0 5px;
+  text-decoration: none;
+  color: #3498db;
+}
+
+.pagination a:hover {
+  text-decoration: underline;
+}
+
+/* ⚠ Messages */
+.no-data {
+  text-align: center;
+  color: #777;
+  padding: 10px;
+}
+
+.out-of-stock {
+  color: red;
+  font-weight: bold;
+}
+
+/* ⚓ Footer */
+footer {
+  background-color: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
