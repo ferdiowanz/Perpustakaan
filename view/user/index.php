@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <a href="index.php?page=book"
-    class="btn-back"> kembali ke daftar buku</a>
+    class="btn-back"> <-back </a>
     <title>👥 Manajemen Anggota</title>
     <style>
         body {

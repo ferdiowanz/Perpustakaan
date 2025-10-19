@@ -9,11 +9,11 @@ if (session_status() === PHP_SESSION_NONE) {
 <head>
     <meta charset="UTF-8">
     <title>📚 Daftar Buku</title>
-    <link rel="stylesheet" href="public/css/style.css"> <!-- ✅ Hubungkan CSS -->
+    <link rel="stylesheet" href="public/css/style.css"> <!-- Hubungkan CSS -->
 </head>
 <body>
 
-<!-- 🔹 Navbar -->
+<!--  Navbar -->
 <header class="navbar">
     <div class="container">
         <div class="left">
@@ -27,7 +27,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     <a href="index.php?page=riwayat_admin">📊 Riwayat Semua</a>
                     <a href="index.php?page=user">👥 Anggota</a>
                 <?php else: ?>
-                    <a href="index.php?page=riwayat">📖 Riwayat Saya</a>
+                    <a href="index.php?page=riwayat"> Riwayat Saya</a>
                 <?php endif; ?>
 
                 <a href="index.php?page=logout" class="logout" onclick="return confirm('Yakin mau logout?')">🚪 Logout</a>

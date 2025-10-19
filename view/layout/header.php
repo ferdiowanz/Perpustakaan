@@ -58,12 +58,12 @@ if (session_status() === PHP_SESSION_NONE) {
             (<?= htmlspecialchars($_SESSION['user']['role']) ?>)
             |
             <?php if ($_SESSION['user']['role'] === 'admin'): ?>
-                <a href="index.php?page=book">📘 Buku</a>
+                <a href="index.php?page=book"> Buku</a>
                 <a href="index.php?page=user">👥 Anggota</a>
-                <a href="index.php?page=riwayat_admin">📊 Riwayat</a>
+                <a href="index.php?page=riwayat_admin"> Riwayat</a>
             <?php else: ?>
-                <a href="index.php?page=book">📖 Buku</a>
-                <a href="index.php?page=riwayat">🕘 Riwayat Saya</a>
+                <a href="index.php?page=book">Buku</a>
+                <a href="index.php?page=riwayat"> Riwayat Saya</a>
             <?php endif; ?>
             |
             <a href="index.php?page=logout" onclick="return confirm('Yakin mau logout?')">🚪 Logout</a>

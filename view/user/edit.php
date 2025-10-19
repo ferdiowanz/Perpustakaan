@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>✏️ Edit Anggota</title>
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="public/css/style.css">
 </head>
 <body>
 
@@ -26,7 +26,7 @@
         <button type="submit">Simpan Perubahan</button>
     </form>
 
-    <a href="index.php?page=anggota" class="btn-back">← Kembali</a>
+    <a href="index.php?page=anggota" class="btn-back">← mbali</a>
 </div>
 
 </body>

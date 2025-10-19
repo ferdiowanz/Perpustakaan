@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<!-- 🔹 Header Navigasi -->
+<!--  Header Navigasi -->
 <div style="margin-bottom: 15px;">
     <a href="index.php?page=book" 
        style="text-decoration:none; background:#4CAF50; color:white; padding:6px 10px; border-radius:4px;">

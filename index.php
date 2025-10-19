@@ -1,22 +1,16 @@
 <?php
 session_start();
 
-/* =========================================================
-   📘 LOAD SEMUA CONTROLLER
-========================================================= */
-require_once __DIR__ . "/controller/BookController.php";
+/*
+    LOAD SEMUA CONTROLLER */
 require_once __DIR__ . "/controller/AuthController.php";
+require_once __DIR__ . "/controller/BookController.php";
 require_once __DIR__ . "/controller/BorrowController.php";
 require_once __DIR__ . "/controller/UserController.php";
 
-/* =========================================================
-   🔧 PAGE HANDLER
-========================================================= */
-$page = $_GET['page'] ?? 'login';
-
-/* =========================================================
-   🧩 HELPER FUNCTION UNTUK PROTEKSI LOGIN DAN ROLE
-========================================================= */
+/* 
+   HELPER FUNCTION UNTUK PROTEKSI LOGIN & ROLE
+ */
 function requireLogin($role = null) {
     if (!isset($_SESSION['user'])) {
         header("Location: index.php?page=login");
@@ -24,19 +18,21 @@ function requireLogin($role = null) {
     }
 
     if ($role && $_SESSION['user']['role'] !== $role) {
-        echo "<p style='color:red;'>⚠️ Akses ditolak. Hanya {$role} yang bisa mengakses halaman ini.</p>";
+        echo "<p style='color:red;'>⚠ Akses ditolak. Hanya {$role} yang dapat mengakses halaman ini.</p>";
         exit;
     }
 }
 
-/* =========================================================
-   🚦 ROUTING UTAMA
-========================================================= */
+/* 
+    ROUTING UTAMA
+ */
+$page = $_GET['page'] ?? 'login';
+
 switch ($page) {
 
-    /* ===========================
-       🔹 AUTHENTICATION
-    =========================== */
+    /* 
+       AUTHENTICATION
+    */
     case 'register':
         (new AuthController())->registerForm();
         break;
@@ -57,9 +53,9 @@ switch ($page) {
         (new AuthController())->logout();
         break;
 
-    /* ===========================
-       🔹 CRUD BUKU
-    =========================== */
+    /* 
+        CRUD BUKU
+    */
     case 'book':
         requireLogin();
         (new BookController())->index();
@@ -72,30 +68,30 @@ switch ($page) {
 
     case 'book_delete':
         requireLogin('admin');
-        (new BookController())->delete($_GET['id']);
+        (new BookController())->delete($_GET['id'] ?? null);
         break;
 
     case 'book_edit':
         requireLogin('admin');
-        (new BookController())->edit($_GET['id']);
+        (new BookController())->edit($_GET['id'] ?? null);
         break;
 
     case 'book_update':
         requireLogin('admin');
-        (new BookController())->update($_GET['id']);
+        (new BookController())->update($_GET['id'] ?? null);
         break;
 
-    /* ===========================
-       🔹 PEMINJAMAN / PENGEMBALIAN
-    =========================== */
+    /* 
+        PEMINJAMAN / PENGEMBALIAN
+    */
     case 'borrow':
         requireLogin('anggota');
-        (new BorrowController())->borrow($_GET['id']);
+        (new BorrowController())->borrow($_GET['id'] ?? null);
         break;
 
     case 'return':
         requireLogin('anggota');
-        (new BorrowController())->returnBook($_GET['id']);
+        (new BorrowController())->returnBook($_GET['id'] ?? null);
         break;
 
     case 'riwayat':
@@ -118,9 +114,9 @@ switch ($page) {
         }
         break;
 
-    /* ===========================
-       🔹 MANAJEMEN ANGGOTA (ADMIN)
-    =========================== */
+    /* 
+        MANAJEMEN ANGGOTA (ADMIN)
+    */
     case 'user':
         requireLogin('admin');
         (new UserController())->index();
@@ -138,23 +134,22 @@ switch ($page) {
 
     case 'user_edit':
         requireLogin('admin');
-        (new UserController())->editForm($_GET['id']);
+        (new UserController())->editForm($_GET['id'] ?? null);
         break;
 
     case 'user_update':
         requireLogin('admin');
-        (new UserController())->update($_GET['id']);
+        (new UserController())->update($_GET['id'] ?? null);
         break;
 
     case 'user_delete':
         requireLogin('admin');
-        (new UserController())->delete($_GET['id']);
+        (new UserController())->delete($_GET['id'] ?? null);
         break;
 
-    /* ===========================
-       🔹 DEFAULT / 404 HANDLER
-    =========================== */
-    default:
+    // DEFAULT / 404 HANDLER /
+   
+        default:
         echo "<h2 style='color:red;'>❌ Halaman tidak ditemukan.</h2>";
         break;
 }

@@ -15,7 +15,7 @@ class AuthController {
     public function login() {
         if (session_status() === PHP_SESSION_NONE) session_start();
 
-        $email = $_POST['email'] ?? '';
+        $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
         $password = $_POST['password'] ?? '';
 
         $user = $this->model->getUserByEmail($email);
@@ -26,18 +26,18 @@ class AuthController {
                 'nama' => $user['nama'],
                 'role' => $user['role']
             ];
-            header("Location: ./index.php?page=book");
+            header("Location: index.php?page=book");
             exit;
-        } else {
-            $error = "Email atau password salah.";
-            include "view/auth/login.php";
         }
+
+        $error = "Email atau password salah.";
+        include "view/auth/login.php";
     }
 
     public function logout() {
         session_start();
         session_destroy();
-        header("Location: ./index.php?page=login");
+        header("Location: index.php?page=login");
         exit;
     }
 
@@ -47,13 +47,14 @@ class AuthController {
 
     public function register() {
         if (session_status() === PHP_SESSION_NONE) session_start();
-        $nama = trim($_POST['nama'] ?? '');
-        $email = trim($_POST['email'] ?? '');
+
+        $nama = trim(filter_input(INPUT_POST, 'nama', FILTER_SANITIZE_SPECIAL_CHARS));
+        $email = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL));
         $password = $_POST['password'] ?? '';
         $password_confirm = $_POST['password_confirm'] ?? '';
         $role = 'anggota';
 
-        if (empty($nama) || empty($email) || empty($password) || empty($password_confirm)) {
+        if (!$nama || !$email || !$password || !$password_confirm) {
             $error = "Semua field harus diisi.";
             include "view/auth/register.php";
             return;
@@ -66,7 +67,7 @@ class AuthController {
         }
 
         if ($password !== $password_confirm) {
-            $error = "Password dan konfirmasi password tidak sama.";
+            $error = "Password dan konfirmasi tidak sama.";
             include "view/auth/register.php";
             return;
         }
@@ -77,9 +78,8 @@ class AuthController {
             return;
         }
 
-        $existing = $this->model->getUserByEmail($email);
-        if ($existing) {
-            $error = "Email sudah terdaftar. Silakan login atau gunakan email lain.";
+        if ($this->model->getUserByEmail($email)) {
+            $error = "Email sudah terdaftar.";
             include "view/auth/register.php";
             return;
         }
@@ -87,14 +87,14 @@ class AuthController {
         $hash = password_hash($password, PASSWORD_DEFAULT);
         $ok = $this->model->createUser($nama, $email, $hash, $role);
 
-
         if ($ok) {
-            $_SESSION['success'] = "Registrasi berhasil. Silakan login.";
-            header("Location: ./index.php?page=login");
+            $_SESSION['success'] = "Registrasi berhasil, silakan login.";
+            header("Location: index.php?page=login");
             exit;
-        } else {
-            $error = "Gagal mendaftar. Silakan coba lagi.";
-            include "view/auth/register.php";
         }
+
+        $error = "Gagal mendaftar, silakan coba lagi.";
+        include "view/auth/register.php";
     }
 }
+?>
